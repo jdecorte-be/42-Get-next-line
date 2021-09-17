@@ -10,20 +10,6 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
-{
-	char	*str;
-
-	str = (char *)s;
-	while (*str != c)
-	{
-		if (*str == '\0')
-			return (NULL);
-		str++;
-	}
-	return (str);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
@@ -80,4 +66,35 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	dest[i] = '\0';
 	return (dest);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	char	*str;
+
+	str = (char *)s;
+	while (*str != c)
+	{
+		if (*str == '\0')
+		{
+			return (NULL);
+		}
+		str++;
+	}
+	return (str);
+}
+
+char			*ft_alloc(size_t size)
+{
+	char	*s;
+	char	*ptr;
+
+	s = (char *)malloc(sizeof(char) * (size + 1));
+	if (s == NULL)
+		return (NULL);
+	size = size + 1;
+	ptr = s;
+	while (size-- > 0)
+		*ptr++ = '\0';
+	return (s);
 }
