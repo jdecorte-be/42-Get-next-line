@@ -1,5 +1,4 @@
 #include "get_next_line.h"
-#include "get_next_line.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -15,50 +14,43 @@ int ft_bufflen(char *str)
 	return i;
 }
 
-
-static char		*ft_save(char *lines, size_t *a)
+void	ft_putstr_fd(char *s, int fd)
 {
-	if (ft_strchr(lines, '\n'))
+	int	i;
+
+	i = 0;
+	while (s[i] != '\n' && s[i] != '\0')
 	{
-		ft_strcpy(lines, ft_strchr(lines, '\n') + 1);
-		return (lines);
+		write(fd, &s[i], 1);
+		i++;
 	}
-	if (ft_bufflen(lines) > 0)
-	{
-		ft_strcpy(lines, ft_strchr(lines, '\0'));
-		*a = 0;
-		return (lines);
-	}
-	return (NULL);
 }
 
-
-int	get_next_line(int fd, char **line)
+char *get_next_line(int fd)
 {
-	static char		buf[BUFFER_SIZE + 1];
-	char			*line_tmp;
-	static char		*lines = NULL;
-	int				end_buff;
-	size_t			a;
+	char buffer[BUFFER_SIZE + 1];
+	char *res = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (fd < 0 || !res || BUFFER_SIZE <= 0)
+		return NULL;
 
-	a = 1;
-	if (fd < 0  || read(fd, buf, 0) < 0)
-		return (-1);
-	if (lines == NULL && (lines = ft_alloc(0)) == NULL)
-		return (-1);
-	while (ft_strchr(lines, '\n') == NULL
-		&& (end_buff = read(fd, buf, BUFFER_SIZE)) > 0)
+	int btreaded = read(fd, buffer, BUFFER_SIZE);
+	if (btreaded != 0)
+		return NULL;
+	buffer[btreaded] = '\0';
+
+	int i = 0;
+	while(ft_strchr(buffer, '\n') != 0|| buffer[i])
 	{
-		buf[end_buff] = '\0';
-		line_tmp = lines;
-		lines = ft_strjoin(line_tmp, buf);
-		free(line_tmp);
+		res[i] = buffer[i];
+		i++;
 	}
-	*line = ft_substr(lines, 0, ft_bufflen(lines));
-	if ((ft_save(lines, &a) != NULL) && a == 1)
-		return (1);
-	free(lines);
-	lines = NULL;
-	return (0);
+	res[i] = '\0';
+	printf("%s", res);
+	return res;
 }
 
+int main()
+{
+    int fd = open("test.txt", O_RDONLY);
+    get_next_line(fd);
+}
