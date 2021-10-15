@@ -1,5 +1,6 @@
 #include "get_next_line.h"
 
+
 size_t	ft_strlen(const char *s)
 {
 	size_t i;
@@ -8,6 +9,23 @@ size_t	ft_strlen(const char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
+}
+char	*ft_strdup(const char *source)
+{
+	char	*mall;
+	int		i;
+
+	mall = malloc(sizeof(char) * (ft_strlen(source) + 1));
+	if (!mall)
+		return (NULL);
+	i = 0;
+	while (source[i])
+	{
+		mall[i] = source[i];
+		i++;
+	}
+	mall[i] = 0;
+	return (mall);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
