@@ -13,7 +13,7 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-// # define BUFFER_SIZE 42
+# define BUFFER_SIZE 42
 
 # include <stddef.h>
 # include <stdlib.h>
@@ -28,10 +28,12 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 char	*get_next_line(int fd);
-void	ft_add_to_line(char **line, char **mem, char *buffer);
+int		read_file(int fd, char **buffer, char **s_buff, char **line);
+char	*get_line(char **line, char **s_buff);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s, size_t size);
+char	*ft_strdup(const char *source);
 char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

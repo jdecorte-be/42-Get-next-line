@@ -12,6 +12,30 @@
 
 #include "get_next_line.h"
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
+		i++;
+	}
+	str[j] = 0;
+	return (str);
+}
+
 char	*ft_strchr(const char *s, int c)
 {
 	int		i;
@@ -38,24 +62,22 @@ size_t	ft_strlen(const char *s)
 	return (count);
 }
 
-char	*ft_strdup(const char *s, size_t size)
+char	*ft_strdup(const char *source)
 {
-	char	*r;
-	size_t	i;
+	char	*mall;
+	int		i;
 
-	if (size == 0 || !s)
-		return (0);
-	r = malloc((size + 1) * sizeof(char));
-	if (!r)
-		return (0);
+	mall = malloc(sizeof(char) * (ft_strlen(source) + 1));
+	if (!mall)
+		return (NULL);
 	i = 0;
-	while (i < size)
+	while (source[i])
 	{
-		r[i] = s[i];
+		mall[i] = source[i];
 		i++;
 	}
-	r[size] = '\0';
-	return (r);
+	mall[i] = 0;
+	return (mall);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
