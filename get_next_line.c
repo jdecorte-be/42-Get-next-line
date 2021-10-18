@@ -1,8 +1,7 @@
-
 #include "get_next_line.h"
 #include <stdio.h> 
 
-char	*ft_strclr(char *rem, char *buf)
+char	*fr_free(char *rem, char *buf)
 {
 	char	*temp;
 
@@ -11,7 +10,30 @@ char	*ft_strclr(char *rem, char *buf)
 	return (temp);
 }
 
-char	*get_line(char *rem)
+char	*ft_next(char *rem)
+{
+	int		i;
+	int		j;
+	char	*line;
+
+	i = 0;
+	while (rem[i] && rem[i] != '\n')
+		i++;
+	if (!rem[i])
+	{
+		free(rem);
+		return (NULL);
+	}
+	line = ft_calloc((ft_strlen(rem) - i + 1), sizeof(char));
+	i++;
+	j = 0;
+	while (rem[i])
+		line[j++] = rem[i++];
+	free(rem);
+	return (line);
+}
+
+char	*ft_line(char *rem)
 {
 	char	*line;
 	int		i;
@@ -32,51 +54,50 @@ char	*get_line(char *rem)
 		line[i++] = '\n';
 	return (line);
 }
-char *read_file(int fd, char *res)
-{
-    char *buffer;
-    int byte_read;
 
-    if(!res)
-        res = ft_calloc(1,1);
-    buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-    byte_read = 1;
-    while (byte_read > 0)
-    {
-        byte_read = read(fd, buffer, BUFFER_SIZE);
-        if (byte_read == -1)
-        {
-            free(buffer);
-            return 0;
-        }
-        buffer[byte_read] = 0;
-        res = ft_strclr(res, buffer);
-        if (ft_strchr(buffer, '\n'))
-            break ;
-    }
-    free(buffer);
-    return res;
+char	*read_file(int fd, char *res)
+{
+	char	*buffer;
+	int		byte_read;
+
+	if (!res)
+		res = ft_calloc(1, 1);
+	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	byte_read = 1;
+	while (byte_read > 0)
+	{
+		byte_read = read(fd, buffer, BUFFER_SIZE);
+		if (byte_read == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		buffer[byte_read] = 0;
+		res = fr_free(res, buffer);
+		if (ft_strchr(buffer, '\n'))
+			break ;
+	}
+	free(buffer);
+	return (res);
 }
 
 char	*get_next_line(int fd)
 {
-    static char *buffer;
-    char *line;
+	static char *buffer;
+	char *line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-        return NULL;
-    buffer = read_file(fd, buffer);
-    if (!buffer)
-        return 0;
-    line = get_line(buffer);
-    buffer = get_left_line(buffer);
-    return line;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+		return NULL;
+	buffer = read_file(fd, buffer);
+	if (!buffer)
+		return 0;
+	line = ft_line(buffer);
+	buffer = ft_next(buffer);
+	return line;
 }
 
-// int main()
-// {
-//     int fd = open("test.txt", O_RDONLY);
-//     printf("%s",get_next_line(fd));
-//     printf("%s",get_next_line(fd));
-//     printf("%s",get_next_line(fd));
-// }
+int main()
+{
+	int fd = open("test.txt", O_RDONLY);
+	printf("%s",get_next_line(fd));
+}
