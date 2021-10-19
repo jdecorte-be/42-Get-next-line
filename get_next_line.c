@@ -1,5 +1,4 @@
 #include "get_next_line.h"
-#include <stdio.h> 
 
 char	*fr_free(char *rem, char *buf)
 {
