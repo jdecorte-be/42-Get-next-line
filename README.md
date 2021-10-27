@@ -8,7 +8,7 @@
 
 The GNL function uses the `read(2)` function to read a line from a file descriptor (`fd`). Calling this function in a loop will read the text available on the `fd` one line at a time until the end of it.
 
-*Note: when compiling this project with `gcc` is necessary to add the flag `-D BUFFER_SIZE=xx` (the `x` being any number) to specify how many bytes will `read(2)` read each time. However, in my [libft](https://github.com/Javiff8/Libft) I added a `define` in the header [libft.h](https://github.com/Javiff8/Libft/blob/master/inc/libft.h) that allows this function to run with a `BUFFER_SIZE=42` if no `BUFFER_SIZE` is specified.* 
+*Note: when compiling this project with `gcc` is necessary to add the flag `-D BUFFER_SIZE=xx` (the `x` being any number) to specify how many bytes will `read(2)` read each time. However, in my [libft](https://github.com/jdecorte-be/42-libft) I added a `define` in the header [libft.h](https://github.com/Javiff8/Libft/blob/master/inc/libft.h) that allows this function to run with a `BUFFER_SIZE=42` if no `BUFFER_SIZE` is specified.* 
 
 ## Return Values
 
