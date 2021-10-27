@@ -16,9 +16,9 @@ The line read or `NULL` if there was an error or there was no other line to be r
 
 # Content
 
-The 3 main files for this project are: [get_next_line.c](https://github.com/jdecorte-be/Get_Next_Line/blob/master/get_next_line.c), [get_next_line.utils.c](https://github.com/jdecorte-be/Get_Next_Line/blob/master/get_next_line_utils.c), and the header [get_next_line.h](https://github.com/jdecorte-be/Get_Next_Line/blob/master/get_next_line.h). Here is the content of each file:
+The 3 main files for this project are: [get_next_line.c](https://github.com/jdecorte-be/42-Get-next-line/blob/master/get_next_line.c), [get_next_line.utils.c](https://github.com/jdecorte-be/42-Get-next-line/blob/master/get_next_line_utils.c), and the header [get_next_line.h](https://github.com/jdecorte-be/42-Get-next-line/blob/master/get_next_line.h). Here is the content of each file:
 
-### [get_next_line.c](https://github.com/jdecorte-be/Get_Next_Line/blob/master/get_next_line.c)
+### [get_next_line.c](https://github.com/jdecorte-be/42-Get-next-line/blob/master/get_next_line.c)
 
 This file contains 4 functions:
 
@@ -27,13 +27,13 @@ This file contains 4 functions:
 - `static char *ft_substr_gnl(char const *s, int start, int len)`: A slightly modified [ft_substr](https://github.com/jdecorte-be/Libft/blob/master/src/ft_substr.c) to return `NULL` if `start > len`, so that it can set the `static char *` variable to `NULL` when reading the last line of the file.
 - `static char *ft_strjoin_gnl(char *temp, char *buf)`:* The modified [ft_strjoin](https://github.com/jdecorte-be/Libft/blob/master/ft_strjoin.c). It allows to free the `temp` variable after using it to create the new `static char *`, which is returned.
 
-### [get_next_line.utils.c](https://github.com/jdecorte-be/Get_Next_Line/blob/master/get_next_line_utils.c)
+### [get_next_line.utils.c](https://github.com/jdecorte-be/42-Get-next-line/blob/master/get_next_line_utils.c)
 
 This file only contains the [ft_strchr](https://github.com/jdecorte-be/Libft/blob/master/ft_strchr.c), [ft_strdup](https://github.com/jdecorte-be/Libft/blob/master/ft_strdup.c) and [ft_strlen](https://github.com/jdecorte-be/Libft/blob/master/ft_strlen.c) functions of my [libft](https://github.com/jdecorte-be/42-libft). This was because we were not allowed to use our whole [libft](https://github.com/jdecorte-be/42-libft) for this project, so we need to select which specific functions we needed to use.
 
-### [get_next_line.h](https://github.com/jdecorte-be/Get_Next_Line/blob/master/get_next_line.h)
+### [get_next_line.h](https://github.com/jdecorte-be/42-Get-next-line/blob/master/get_next_line.h)
 
-The header file that contains the prototype of the functions of the [get_next_line.utils.c](https://github.com/jdecorte-be/Get_Next_Line/blob/master/get_next_line_utils.c) and the GNL function itself.
+The header file that contains the prototype of the functions of the [get_next_line.utils.c](https://github.com/jdecorte-be/42-Get-next-line/blob/master/get_next_line_utils.c) and the GNL function itself.
 
 ## Bonus
 
@@ -42,7 +42,7 @@ The bonus part of this project was to:
 - Only use **one static variable**, which I also did for the mandatory part.
 - To be able to **manage multiple file descriptors** with the GNL function. For example, if the file descriptors 3, 4 and 5 are accessible for reading, calling `get_next_line` once on 3, once on 4, once again on 3, then once on 5, etc. without losing the reading thread on each of the descriptors.
 
-This was simply done by adding a define to the [get_next_line_bonus.h](https://github.com/jdecorte-be/Get_Next_Line/blob/master/get_next_line_bonus.h) header with the maximum number a `fd` can have on MacOS systems (after a quick search I found that the number was 12288). This number was used to create a `static char **`, so that the `static char *` of each `fd` could be stored in a unique position within the matrix. Check the `get_next_line` function in the [get_next_line_bonus.c](https://github.com/jdecorte-be/Get_Next_Line/blob/master/get_next_line_bonus.c) file to see it clearer. The rest of the file and the [get_next_line_utils_bonus.c](https://github.com/jdecorte-be/Get_Next_Line/blob/master/get_next_line_utils_bonus.c) file are the same as those explained before.
+This was simply done by adding a define to the [get_next_line_bonus.h](https://github.com/jdecorte-be/42-Get-next-line/blob/master/get_next_line_bonus.h) header with the maximum number a `fd` can have on MacOS systems (after a quick search I found that the number was 12288). This number was used to create a `static char **`, so that the `static char *` of each `fd` could be stored in a unique position within the matrix. Check the `get_next_line` function in the [get_next_line_bonus.c](https://github.com/jdecorte-be/42-Get-next-line/blob/master/get_next_line_bonus.c) file to see it clearer. The rest of the file and the [get_next_line_utils_bonus.c](https://github.com/jdecorte-be/42-Get-next-line/blob/master/get_next_line_utils_bonus.c) file are the same as those explained before.
 
 # How to use
 
