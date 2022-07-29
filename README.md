@@ -6,6 +6,12 @@
 	<b><i>Reading a line on a fd is way too tedious</i></b><br>
 </p>
 
+[![jaeskim's 42 stats](https://badge42.vercel.app/api/v2/cl0yx1v0j0158ns5shlllmdvb/stats?cursusId=21&coalitionId=85)](https://github.com/JaeSeoKim/badge42)
+
+[![jaeskim's 42 stats](https://badge42.vercel.app/api/v2/cl0yx1v0j0158ns5shlllmdvb/stats?cursusId=9&coalitionId=piscine)](https://github.com/JaeSeoKim/badge42)
+
+jaeskim's 42 ft_printf Score - [![jaeskim's 42 ft_printf Score](https://badge42.vercel.app/api/v2/cl0yx1v0j0158ns5shlllmdvb/project/2004625)](https://github.com/JaeSeoKim/badge42)
+
 <p align="center">
 	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/jdecorte-be/42-Get-next-line?color=lightblue" />
 	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/jdecorte-be/42-Get-next-line?color=critical" />
